@@ -26,10 +26,18 @@ def get_random_color():
 def interact():
     """Handles the user interaction loop."""
     while True:
-        user_input = input("Type 'hello' to interact or 'exit'/'quit'/'later' to quit: ").lower()
+        user_input = input("Type 'hello' to interact or 'exit'/'quit'/'later' to quit: ").strip().lower()
+
+        if not user_input:  # Check for empty input
+            print("You didn't type anything! Try again.")
+            continue
 
         if user_input == "hello":
-            color = input("What's your favorite color? ").lower()
+            color = input("What's your favorite color? ").strip().lower()
+
+            if not color:  # Handle empty input for color
+                print("No color? That's okay, maybe next time!")
+                continue
 
             if color in RAINBOW_COLORS:
                 message = f"{color.capitalize()}: Me too!" if color == "purple" else f"{color.capitalize()}: That's an interesting choice!"
